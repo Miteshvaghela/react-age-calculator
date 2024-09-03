@@ -7,6 +7,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 function Result({year, month, day}){
     return (
         <div className='result'>
+            <strong>Today : </strong>
+            <p>{new Date().toDateString()}</p>
             <strong>Age : </strong>
             <p>{year} Years {month} Months {day} Days</p>
         </div>
