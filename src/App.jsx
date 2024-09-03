@@ -1,7 +1,8 @@
-import Form from './components/Form'
+import React, { useEffect, useState } from 'react';
+import Form from './components/Form';
 
-function App() { 
 
+function App() {   
   return (
     <> 
       <Form />
