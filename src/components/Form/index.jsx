@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import { FaCalendarDays } from "react-icons/fa6";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -21,7 +21,9 @@ const [ageDay, setAgeDay] = useState(null);
 const [birthDate, setBirthDate] = useState(null);
 const calculateAge = (e) => {
     e.preventDefault(); 
-    console.log('Birth date : ', birthDate); 
+    if(birthDate === null){
+        return alert('Please select your birth date');
+    }
     let year = new Date(birthDate).getFullYear();
     let month = new Date(birthDate).getMonth();
     let day = new Date(birthDate).getDate();
@@ -46,14 +48,13 @@ const calculateAge = (e) => {
         <main className="form-signin">
             <h1 className="h3">Age Calculator</h1>
             <form action=""> 
-            <div >
-            <DatePicker style={{width: '100%'}} selected={birthDate} dateFormat="dd/MM/yyyy" onChange={(date) => setBirthDate(date)} className='form-control datepicker' placeholderText="Date of Birth"/> 
+            <div>
+            <DatePicker style={{width: '100%'}} selected={birthDate} dateFormat="dd/MM/yyyy" onChange={(date) => setBirthDate(date)} icon={<FaCalendarDays style={{fontSize: '20px', right: '0px'}} />} showIcon={true} maxDate={new Date()} className='form-control datepicker' placeholderText="Date of Birth"/> 
             </div> 
- 
             <button className="w-100 btn btn-lg" type="submit" onClick={e => calculateAge(e)}>Calculate</button>
             </form>
             
-            {ageYear && <Result year={ageYear} month={ageMonth} day={ageDay}/>}
+            {(ageYear !== null) && <Result year={ageYear} month={ageMonth} day={ageDay}/>}
         </main>
     </>
   )
